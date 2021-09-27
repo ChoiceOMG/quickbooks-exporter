@@ -3,5 +3,4 @@
 node_modules/
 dist/
 build/
-*config*
 .env
