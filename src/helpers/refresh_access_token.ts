@@ -29,7 +29,3 @@ export const refresh_access_token = async (refresh_token: string) => {
     .then((response) => save_tokens(response.data))
     .catch((error) => console.log(error.message))
 }
-
-
-
-

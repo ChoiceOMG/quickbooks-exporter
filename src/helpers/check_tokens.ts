@@ -18,7 +18,7 @@ const check_tokens = async () => {
 
   if (seconds < 2.592e+6) {
     const channel = process.env.NOTIFICATION_HOOK || ''
-    const message = `Time to [refresh QBO token](https://www.choice.marketing/api/qbo/authorize)`
+    const message = `Time to [refresh QBO token](${process.env.AUTH_URL})`
     axios.post(channel, {
       text: message,      
     })    
