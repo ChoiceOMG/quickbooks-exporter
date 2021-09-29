@@ -1,14 +1,14 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({
-  name: "contact",
+  name: "Customer",
   engine: "InnoDB",
   database: 'quickbooks',
 })
 class Customer extends BaseEntity {
-    
+
   @PrimaryGeneratedColumn("uuid")
-  id: string
+  uuid: string
 
   @UpdateDateColumn()
   updatedDate: Date
@@ -17,34 +17,46 @@ class Customer extends BaseEntity {
   createdDate: Date
 
   @Column()
-  qbo_sync_token: string
+  Balance: string
 
   @Column()
-  name: string
+  CurrencyRef_value: string
 
   @Column()
-  company: string
-  
-  @Column()
-  email: string
+  CurrencyRef_name: string
 
   @Column()
-  phone: string
+  Id: string
 
   @Column()
-  website: string
+  SyncToken: string
 
   @Column()
-  active: string
+  MetaData_CreateTime: string
 
   @Column()
-  qbo_qualified_name: string
+  MetaData_LastUpdatedTime: string
 
   @Column()
-  qbo_customer_type: string
+  CompanyName: string
 
   @Column()
-  notes: string
+  DisplayName: string
+
+  @Column()
+  Active: string
+
+  @Column()
+  V4IDPseudonym: string
+
+  @Column()
+  PrimaryPhone_FreeFormNumber: string
+
+  @Column()
+  WebAddr_URI: string
+
+  @Column()
+  Notes: string
 
 }
 

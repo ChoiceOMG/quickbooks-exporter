@@ -18,25 +18,28 @@ const check_tokens = async () => {
 
   if (seconds < 2.592e+6) {
     const channel = process.env.NOTIFICATION_HOOK || ''
-    const message = `Time to [refresh QBO token](${process.env.AUTH_URL})`
-    axios.post(channel, {
+    const message = `Time to [Refresh QBO Auth Code](${process.env.AUTH_URL})`
+    await axios.post(channel, {
       text: message,      
     })    
-    .catch((error) => console.log('Error checking tokens', error.message))
+    .catch((error) => console.log('Error with auth code', error.message))
+    return  
   } else {
     expires = new Date(Number(accessToken_expires))
     seconds = (expires.getTime() - now.getTime()) / 1000;
     console.log(seconds)
-    if (seconds < 60) {
+
+    if (seconds < 300) {
       console.log('Access token needs to be refreshed')
       const refreshToken = await client.get('refreshToken')
-      if (refreshToken) await refresh_access_token(refreshToken)
+      if (refreshToken) 
+      return await refresh_access_token(refreshToken)
+      .catch((error) => console.log('Error refreshing access token', error.message))
+
+    } else {
+      return await client.get('accessToken');
     }
   }
-  console.log('Access token confirmed')
-  return await client.get('accessToken');
-
-
 }
 
 export default check_tokens

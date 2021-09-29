@@ -15,9 +15,9 @@ export const save_tokens = async (data: token_response) => {
 
   const client = redis.createClient();
   client.on('connect', () => console.log("redis ready to save tokens"))  
-  client.set('accessToken', access_token),
+  client.set('accessToken', access_token, (error, reply) => error ? console.log(error) : console.log('accessToken save', reply)),
   client.set('accessToken_expires', String(expires.getTime())),  //60 minutes
-  client.set('refreshToken', refresh_token),
+  client.set('refreshToken', refresh_token, (error, reply) => error ? console.log(error) : console.log('refreshToken save', reply)),
   client.set('refreshToken_expires', String(refresh_expires.getTime())) //101 days
    
 }
