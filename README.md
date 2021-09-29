@@ -1,4 +1,4 @@
-# Quickbooks - Sync your customers to your own database with TypeORM
+# Quickbooks Online API - Sync your customers to your own database using TypeORM
 
 I wanted to be able to keep an eye on all my contact information. This microservice spools up to download all the QBO customer data and put it in mysql so I can us it. 
 
